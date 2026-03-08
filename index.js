@@ -1,9 +1,9 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import cors from 'cors';
-import { createTable } from './data/createSchoolTable.js';
-import schoolRouter from './routes/schoolRoutes.js';
-import errorHandling from './middlewares/errorHandler.js';
+import { createTable } from './src/data/createSchoolTable.js';
+import schoolRouter from './src/routes/schoolRoutes.js';
+import errorHandling from './src/middlewares/errorHandler.js';
 
 // load env vars
 dotenv.config();
