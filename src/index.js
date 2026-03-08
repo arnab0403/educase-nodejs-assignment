@@ -9,7 +9,7 @@ import errorHandling from './middlewares/errorHandler.js';
 dotenv.config();
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT;
 
 // Middlewares
 app.use(express.json());
@@ -19,7 +19,6 @@ app.use(cors());
 app.get('/test', (req, res) => {
 	res.send('Server is running perfectly');
 });
-
 
 // Routes
 app.use('/api', schoolRouter);
