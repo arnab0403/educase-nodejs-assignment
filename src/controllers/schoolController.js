@@ -23,26 +23,26 @@ export const addSchool = async (req, res, next) => {
 		handleResponse(res, 201, 'School added successfully', newschool);
 	} catch (err) {
 		console.error(err);
-
-		next();
+		next(err); // forward to error handler
 	}
 };
 
-export const listSchools = async (req, res) => {
+export const listSchools = async (req, res, next) => {
 	try {
 		const { latitude, longitude } = req.query;
 
 		if (!latitude || !longitude) {
-			return handleResponse(res, 400, 'Latitude and Longitude needed');
+			return handleResponse(
+				res,
+				400,
+				'Latitude and Longitude are required',
+			);
 		}
 
 		const schools = await listSchoolsService(latitude, longitude);
 
-		handleResponse(res, 200, 'School fetched successfully', schools);
+		handleResponse(res, 200, 'Schools fetched successfully', schools);
 	} catch (error) {
-		res.status(500).json({
-			success: false,
-			message: error.message,
-		});
+		next(error);
 	}
 };
